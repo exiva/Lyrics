@@ -1,0 +1,37 @@
+<?xbml version="1.0"?>
+
+<project name="lyrics" default="run">
+    <property environment="env"/>
+    <property name="DANGER_HOME" value="${env.DANGER_HOME}"/>
+    <property name="APP_CLASS_NAME"  value="lyrics"/>
+    <property name="APP_PACKAGE_NAME" value="net.exiva.lyrics"/>
+
+	<!-- Shuriken - T-Mo US - Post OTA -->
+	<!-- <property name="VERSION" value="4.6"/>
+	<property name="BUILD" value="231400" /> -->
+	<!-- Style2 - T-Mo US - Post OTA -->
+	<!-- <property name="VERSION" value="4.7"/>
+	<property name="BUILD" value="231400" /> -->
+	<!-- Zante - T-Mo US -->
+    <!-- <property name="VERSION" value="4.0"/>
+	<property name="BUILD" value="184074" /> -->
+	<!-- Zante - Telstra -->
+    <!-- <property name="VERSION" value="4.0"/>
+	<property name="BUILD" value="187314" /> -->
+	<!-- Zante - T-Mo UK -->
+    <property name="VERSION" value="4.0"/>
+	<property name="BUILD" value="203233" />
+	<!-- M2 - T-Mo US -->
+	<!-- <property name="VERSION" value="3.4"/>
+	<property name="BUILD" value="155053" /> -->
+	<!-- Style - T-Mo US -->
+	<!-- <property name="VERSION" value="3.3"/>
+	<property name="BUILD" value="149695" /> -->
+
+    <property name="APP_VERSION_MAJOR" value="1"/>
+    <property name="APP_VERSION_MINOR" value="0"/>
+    <property name="APP_VERSION_BUILD" value="17"/>
+
+	<import file="${DANGER_HOME}/tools/proguard.xml"/> 
+    <import file="${DANGER_HOME}/tools/build_common.xml"/>
+</project>

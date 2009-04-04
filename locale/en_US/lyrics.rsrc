@@ -1,0 +1,174 @@
+﻿package "net.exiva.lyrics"
+
+interface "{source}net/exiva/lyrics/Resources.java"
+events "{source}net/exiva/lyrics/Commands.java"
+
+#
+## Application Strings
+#
+string ID_APP_NAME "lyrics"
+string ID_CHOOSER_CATEGORY "multimedia-apps"
+string ID_APP_FLAGS "L"
+string ID_APP_CLASS "net.exiva.lyrics.lyrics"
+string ID_VERSION "v@APP_VERSION_MAJOR@.@APP_VERSION_MINOR@/@APP_VERSION_BUILD@"
+string ID_VER "@APP_VERSION_MAJOR@.@APP_VERSION_MINOR@"
+string ID_BUILD "@APP_VERSION_BUILD@"
+string ID_LOCALE "en_US"
+
+#
+## Text Strings
+#
+string kRsrc_Menu_Search "Search Lyrics"
+string kRsrc_Menu_Update "Update Song"
+string kRsrc_Menu_Help	"Tips"
+string kRsrc_Menu_About "About"
+string kRsrc_Screen_ArtistField "Artist"
+string kRsrc_Screen_SongField "Song Title"
+string kRsrc_Screen_SearchButton "Find"
+string kRsrc_About_Title "About lyrics..."
+string kRsrc_Help_Title "Tips"
+
+#
+## Bitmaps
+#
+bitmap ID_LARGE_ICON "{base}LargeIcon.png"
+bitmap ID_SMALL_ICON "{base}SmallIcon.png"
+bitmap ID_MINI_ICON "{base}MiniIcon.png"
+bitmap ID_SPLASH_SCREEN	"{base}SplashScreenTransparent.png"
+
+#
+## Main Menu
+#
+menu ID_MAIN_MENU
+	menuItem
+		title = kRsrc_Menu_Search
+		event = EVENT_SEARCH
+		shortcut = 'e'
+	menuItem
+		title = kRsrc_Menu_Update
+		event = EVENT_UPDATE
+		shortcut = 'u'
+	divider
+	menuItem
+		title = "Send Mail"
+		event = EVENT_EMAIL
+		icon = mailIcon
+		shortcut = 'm'
+	divider
+	menuItem
+		title = kRsrc_Menu_Help
+		event = EVENT_HELP
+	menuItem
+		title = kRsrc_Menu_About
+		event = EVENT_ABOUT
+endMenu
+
+#
+## Main Screen
+#
+screen ID_MAIN_SCREEN
+	title = ID_APP_NAME
+	className = "net.exiva.lyrics.a"
+	actionMenu = ID_MAIN_MENU
+	icon = ID_SMALL_ICON
+	backgroundColor = defaultPaneColor
+	textField
+		id = ARTIST_FIELD
+		labelWhenEmpty = kRsrc_Screen_ArtistField
+		widthPct = 40
+		hasBorder
+		advanceFocusOnReturn
+		font = boldSysFont
+		top = 5
+		left = 5
+	textField
+		id = SONG_FIELD
+		labelWhenEmpty = kRsrc_Screen_SongField
+		widthPct = 40
+		hasBorder
+		advanceFocusOnReturn
+		font = boldSysFont
+		top = 5
+		justifyLeft
+		positionToRight = ARTIST_FIELD : 5
+	button
+		event = EVENT_SEARCH
+		id = SEARCH_BUTTON
+		title = kRsrc_Screen_SearchButton
+		iconAlignLeft
+		top = 5
+		positionToRight = SONG_FIELD : 3
+	editText
+		id = LYRIC_TEXT
+		hasBorder
+		positionBelow = ARTIST_FIELD : 5
+		justifyLeft
+		fillToBottom = 5
+		fillToRight = 5
+endScreen
+
+#
+## About Alert
+#
+alert ID_ABOUT
+	title = "About Lyrics"
+	icon = ID_LARGE_ICON
+	text = "<html>" +
+		"<b>Lyrics "+ID_VERSION+"</b><br>" +
+		"<b>Written By </b> Travis La Marr<br>" +
+		"<b>Powered By </b> LyricWki.org<br>" +
+		"Om Nom Nom Nom."+
+		"</html>"
+	systemDialog
+endAlert
+
+#
+## Help Dialog
+#
+dialog helpDialog
+	title = kRsrc_Help_Title
+	doneEvent = evtDone
+	doneIsDefault
+	widthPct = 90
+	scrollView
+		id = ID_HELP_SCROLLER
+		alignWithParentTop = 0
+		alignWithParentLeft = 0
+		widthPct = 100
+		height = 110
+		initialFocus
+
+		staticTextBox
+			id = ID_HELP_TEXT
+			alignWithParentTop = 0
+			alignWithParentLeft = 3
+			fillToRight = 0
+			doesNotHaveBorder
+			text = "To manually search for lyrics to a song, enter the artist's name and song title in the respective boxes.\n\n" +
+					"Or, to automatically search for lyrics to a song, \uF007+U or selecting \"Update Song\" from the menu will insert or update the currently playing song.\n\n" +
+					"The service for lyric fetching is provided by lyricWiki.org, with no warranty. So it may go down, and may not have every song.\n\nThis application performs a callhome once upon first running. No personal information is collected, and this data is just used for stats."
+	endScrollView
+endDialog
+
+#
+## Splash Screen
+#
+splashScreen ID_SPLASH_SCREEN_RESOURCE
+ @ IF {screen} = wqvga
+wqvgaSplashScreen
+@ ELSEIF {screen} = qvga
+qvgaSplashScreen
+@ ENDIF
+	image
+		bitmap = ID_SPLASH_SCREEN
+		alignWithParentLeft = 0
+		alignWithParentTop = 0
+	staticTextBox
+		text = ID_APP_NAME
+		id = ID_APP
+		alignWithParentLeft = 2
+		alignWithParentTop = 0
+		fillToRight = 2
+		transparent
+		doesNotHaveBorder
+endSplashScreen
