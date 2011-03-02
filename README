@@ -1,0 +1,5 @@
+Lyrics
+
+This was a simple application I wrote because a friend of mine kept bugging me asking for Lyrics to songs. It queried the LyricWiki database API for the lyrics to either the Currently playing track or a manually entered one.
+
+It had a small following of people who enjoyed it.
